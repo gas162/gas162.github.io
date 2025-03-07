@@ -75,7 +75,7 @@
         });
 
         const data = [];
-
+        const abbreviations = [];
         const loadData = async () => {
             try {
                 // Загружаем первый файл
@@ -87,16 +87,8 @@
                 const responseCosmetology = await fetch('/questions_cosmetology.json');
                 const cosmetologyData = await responseCosmetology.json();
                 data.push(...cosmetologyData);
-            
-            } catch (error) {
-                console.error('Ошибка при загрузке данных:', error);
-            }
-        };
 
-        // Вызываем функцию загрузки данных при запуске скрипта
-        loadData();
-         // После загрузки файлов обновляем результаты
-        const abbreviations = data.map(item => {
+                abbreviations = data.map(item => {
                     return {
                         n: item.n,
                         q: item.q,
@@ -107,6 +99,15 @@
             
                 // Отобразить данные сразу после загрузки
                 displayResults(data);
+            
+            } catch (error) {
+                console.error('Ошибка при загрузке данных:', error);
+            }
+        };
+
+        // Вызываем функцию загрузки данных при запуске скрипта
+        loadData();
+       
     </script>
 </body>
 </html>
