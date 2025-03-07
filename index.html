@@ -88,8 +88,15 @@
                 const cosmetologyData = await responseCosmetology.json();
                 data.push(...cosmetologyData);
             
-                // После загрузки файлов обновляем результаты
-                const abbreviations = data.map(item => {
+            } catch (error) {
+                console.error('Ошибка при загрузке данных:', error);
+            }
+        };
+
+        // Вызываем функцию загрузки данных при запуске скрипта
+        loadData();
+         // После загрузки файлов обновляем результаты
+        const abbreviations = data.map(item => {
                     return {
                         n: item.n,
                         q: item.q,
@@ -100,16 +107,6 @@
             
                 // Отобразить данные сразу после загрузки
                 displayResults(data);
-            
-            } catch (error) {
-                console.error('Ошибка при загрузке данных:', error);
-            }
-        };
-
-        // Вызываем функцию загрузки данных при запуске скрипта
-        loadData();
-        // Отобразить весь список при начальной загрузке
-        displayResults(data);
     </script>
 </body>
 </html>
